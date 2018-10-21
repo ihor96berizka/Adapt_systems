@@ -1,0 +1,10 @@
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\bin\Debug\Lab2_win.exe.config
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\bin\Debug\Lab2_win.exe
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\bin\Debug\Lab2_win.pdb
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.csprojResolveAssemblyReference.cache
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.Form1.resources
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.Properties.Resources.resources
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.csproj.GenerateResource.cache
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.csproj.CoreCompileInputs.cache
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.exe
+H:\Studying\Control Theory2\Lab2_win\Lab2_win\obj\Debug\Lab2_win.pdb
