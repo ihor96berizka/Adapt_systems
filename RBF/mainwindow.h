@@ -42,12 +42,12 @@ private:
     void createMenus();
     void createActions();
 
-    const double disp = 0.5;
-    const double E0 = 0.015;
-    const double learningRate = 0.0005;
-    const int maxIter = 10;
-    const int patternCount = 4;
-    const int rbf_count = 4;
+    const double disp = 1.5;
+    const double E0 = 0.1;
+    const double learningRate = 0.1;
+    const int maxIter = 50;
+    const int patternCount = 2;
+    const int rbf_count = 2;
     const int w_count = rbf_count + 1;
     //вектор ваг
     std::vector<double> w;
@@ -58,6 +58,8 @@ private:
     std::vector<double> c;
 
     double gauss(double x, double c);
+    bool isDone(std::vector<bool>& vec) const;
+    void localError();
 private slots:
     void generateDataSlot();
     void clearDataSlot();

@@ -65,6 +65,96 @@ double MainWindow::gauss(double x, double c)
     return exp(arg);
 }
 
+bool MainWindow::isDone(std::vector<bool> &vec) const
+{
+    for (const auto& item : vec)
+    {
+        if (item == false)
+            return false;
+    }
+    return true;
+}
+
+void MainWindow::localError()
+{
+    std::vector<bool> done(patternCount);
+
+    double E = 0;
+    std::vector<double> dEdw(w_count, 0);
+
+    //вектор виходу мережі
+    std::vector<double> out(patternCount, 0);
+
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(0, 1.0);
+
+    w.reserve(w_count);
+    for (int i = 0; i < w_count; ++i)
+    {
+        w.push_back(distribution(generator));
+    }
+    int currentIter = 0;
+    do{
+        currentIter++;
+        qDebug() << "Current iter: " << currentIter;
+        //для всіх шаблонів
+        for (int i = 0; i < patternCount; ++i)
+        {
+            E = 0;
+            //порахувати вихід мережі для і-тої точки
+            for (int p = 0; p < w_count; ++p)
+            {
+                if (p != 0)
+                {
+                    double g = gauss(t[i], c[p-1]);
+                    out[i] += g * w[p];
+                    //dEdw[p] = gauss(t[i], c[p]);
+                }
+                else
+                {
+                    out[i] += w[p];
+                    //dEdw[p] = 1;
+                }
+            }
+            //порахувати похибку
+            E = 0.5 * (out[i] - f[i]) * (out[i] - f[i]);
+            qDebug() << "out[" << i << "] = " << out[i];
+            qDebug() << "local E[" << i << "] = " << E;
+            if (E < E0)
+            {
+                done[i] = true;
+            }
+            else
+            {
+                done[i] = false;
+            }
+
+            for (int j = 0; j < w_count; ++j)
+            {
+                if (j != 0)
+                {
+                    dEdw[j] = (out[i] - f[i]) * gauss(t[i], c[j-1]);
+                }//bias
+                else
+                {
+                    dEdw[j] = out[i] - f[i];
+                }
+                w[j] -= learningRate * dEdw[j];
+                qDebug() << "w[" << j << "] = " << w[j];
+                qDebug() << "dEdw[" << j << "] = " << dEdw[j];
+
+            }
+            qDebug() << "pattern # " << i << "\n";
+        }
+        qDebug() << "done vector:";
+        for (int i = 0; i < patternCount; ++i)
+        {
+            qDebug() << "done[" << i << "] = " << done[i];
+        }
+    }while (!isDone(done) && currentIter < maxIter);
+    qDebug() <<"current iter < maxIter? " << (currentIter < maxIter);
+}
+
 void MainWindow::generateDataSlot()
 {
     const double pi = 3.14;
@@ -107,6 +197,7 @@ void MainWindow::clearDataSlot()
 
 void MainWindow::teachNetworkSlot()
 {
+/*
     std::vector<bool> isDone(patternCount);
 
     double E = 0;
@@ -121,7 +212,7 @@ void MainWindow::teachNetworkSlot()
     w.reserve(w_count);
     for (int i = 0; i < w_count; ++i)
     {
-        w.push_back(i/2.0);//(distribution(generator));
+        w.push_back(0);//(distribution(generator));
     }
     int currentIter = 0;
     do{
@@ -170,7 +261,7 @@ void MainWindow::teachNetworkSlot()
             qDebug() << "out [" << i << "] = " << out[i]
                         << "; f [" << i << "] = " << f[i];
         }
-        E *=0.5;
+        E /=patternCount;
         qDebug() << "E = " << E;
         for (int j = 0; j < w_count; ++j)
         {
@@ -179,7 +270,8 @@ void MainWindow::teachNetworkSlot()
         }
     }while (E > E0 && currentIter < maxIter);
     qDebug() <<"current iter < maxIter? " << (currentIter < maxIter);
-
+*/
+    localError();
 }
 
 void MainWindow::aproxDataSlot()
