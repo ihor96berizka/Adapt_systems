@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_inputDataSeries = new QScatterSeries();
     m_inputDataSeries->setName("input data");
     m_inputDataSeries->setMarkerShape(QScatterSeries::MarkerShapeCircle);
-    m_inputDataSeries->setMarkerSize(10);
+    m_inputDataSeries->setMarkerSize(14);
 
     m_chart->addSeries(m_inputDataSeries);
     m_chart->createDefaultAxes();
@@ -128,7 +128,7 @@ void MainWindow::localError()
             {
                 done[i] = false;
             }
-
+            //оновити вектор ваг
             for (int j = 0; j < w_count; ++j)
             {
                 if (j != 0)
@@ -182,10 +182,10 @@ void MainWindow::generateDataSlot()
     {
         c = t;
     }
-    m_chart->axisX()->setRange(*std::min_element(t.cbegin(), t.cend()),
-                               *std::max_element(t.cbegin(), t.cend()));
-    m_chart->axisY()->setRange(*std::min_element(f.cbegin(), f.cend()),
-                               *std::max_element(f.cbegin(), f.cend()));
+    m_chart->axisX()->setRange(*std::min_element(t.cbegin(), t.cend()) -0.1,
+                               (*std::max_element(t.cbegin(), t.cend())) * 1.1);
+    m_chart->axisY()->setRange(*std::min_element(f.cbegin(), f.cend()) - 0.1,
+                               *std::max_element(f.cbegin(), f.cend()) * 1.1);
 }
 
 void MainWindow::clearDataSlot()

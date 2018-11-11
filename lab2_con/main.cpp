@@ -89,6 +89,7 @@ std::pair<double, double> fib_min(double a, double b, size_t n, Func callable)
     }
     double x = (x1 + x2) / 2.0;
     double y = callable(x);
+    cout << "\nIter = " << n-2;
     return {x, y};
 }
 std::pair<double, double> phi_min(double a, double b, double eps, Func callable)
@@ -101,8 +102,10 @@ std::pair<double, double> phi_min(double a, double b, double eps, Func callable)
     double y1 = callable(x1);
     double y2 = callable(x2);
 
+    size_t iter = 1;
     while(abs(b-a) > eps)
     {
+        iter++;
         if (y1 < y2)
         {
             b = x2;
@@ -121,6 +124,7 @@ std::pair<double, double> phi_min(double a, double b, double eps, Func callable)
     double x = (a+b)/2.0;
     double y = callable(x);
 
+    std::cout << "\nIter: " << iter;
     return {x, y};
 }
 int main()
