@@ -34,21 +34,32 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    double freq_cutoff = 1.5;
-    double freq_sampling = 8;
-    double attenuation = 50;
+    double freq_cutoff = 2;
+    double freq_sampling = 16;
+    double attenuation = 45;
     double perBandpass = 0.5;
     std::vector<double> h;
+    const size_t n = 1024;
+    std::vector<double> data_signal;
+    std::vector<double> filtered_signal;
     QMenu* filterMenu;
     QMenu* plotMenu;
+    QMenu* signalMenu;
 
     QAction* calcHdAct;
+
     QAction* freqRespPlotAct;
     QAction* phaseResp;
     QAction* clearPlotAct;
 
+    QAction* generateSignalAct;
+    QAction* filterSignalAct;
+    QAction* noiseSignalAct;
+
     QLineSeries* freqRespSeries;
     QScatterSeries* phaseRespSeries;
+    QLineSeries* signalSeries;
+
     QChart* m_chart;
     QChartView* m_chartView;
     void createMenus();
@@ -59,6 +70,9 @@ private slots:
     void freqRespPlotSlot();
     void clearPlotSlot();
     void phaseRespSlot();
+    void generateSignalSlot();
+    void filterSignalSlot();
+    void noiseSignalSlot();
 };
 
 #endif // MAINWINDOW_H
