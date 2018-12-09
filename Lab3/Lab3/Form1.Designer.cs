@@ -61,7 +61,7 @@
             "метод Ньютона"});
             this.comboBox1.Location = new System.Drawing.Point(155, 30);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 33);
+            this.comboBox1.Size = new System.Drawing.Size(342, 33);
             this.comboBox1.TabIndex = 1;
             // 
             // label1
@@ -101,6 +101,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 30);
             this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "-1";
             // 
             // textBox2
             // 
@@ -109,6 +110,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 30);
             this.textBox2.TabIndex = 6;
+            this.textBox2.Text = "1e-4";
             // 
             // textBox3
             // 
@@ -211,6 +213,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(100, 30);
             this.textBox7.TabIndex = 19;
+            this.textBox7.Text = "1";
             // 
             // label8
             // 
@@ -229,6 +232,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(100, 30);
             this.textBox8.TabIndex = 21;
+            this.textBox8.Text = "1e-5";
             // 
             // label9
             // 

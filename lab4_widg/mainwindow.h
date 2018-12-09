@@ -39,9 +39,13 @@ private:
     double attenuation = 45;
     double perBandpass = 0.5;
     std::vector<double> h;
-    const size_t n = 1024;
+    const size_t n = 128*2;
+    const double alp = 0.0001;
+
     std::vector<double> data_signal;
     std::vector<double> filtered_signal;
+    std::vector<double> ideal_signal;
+
     QMenu* filterMenu;
     QMenu* plotMenu;
     QMenu* signalMenu;
@@ -55,6 +59,8 @@ private:
     QAction* generateSignalAct;
     QAction* filterSignalAct;
     QAction* noiseSignalAct;
+    QAction* lmsFilterAct;
+    QAction* nlmsFilterAct;
 
     QLineSeries* freqRespSeries;
     QScatterSeries* phaseRespSeries;
@@ -73,6 +79,8 @@ private slots:
     void generateSignalSlot();
     void filterSignalSlot();
     void noiseSignalSlot();
+    void lmsFilterSlot();
+    void nlmsFilterSlot();
 };
 
 #endif // MAINWINDOW_H
