@@ -6,8 +6,7 @@
 #include <QDebug>
 #include <QChart>
 #include <QChartView>
-#include <ctime>
-#include <cstdlib>
+#include <random>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -161,7 +160,6 @@ void MainWindow::phaseRespSlot()
 
 void MainWindow::generateSignalSlot()
 {
-    srand(time(0));
     signalSeries->clear();
     std::vector<double> freqs = {0.5, 1, 1.5, 2, 3, 4};
     std::vector<double> amps = {2.5, 0, 0, 0, 0, 0};
@@ -170,6 +168,9 @@ void MainWindow::generateSignalSlot()
     data_signal = std::vector<double>(n, 0);
     ideal_signal = std::vector<double>(n, 0);
 
+    std::random_device rd{};
+    std::mt19937 gen{rd()};
+    std::normal_distribution<>d{0.1, 0.2};
     data_signal.reserve(n);
     ideal_signal.reserve(n);
 
@@ -179,7 +180,7 @@ void MainWindow::generateSignalSlot()
         {
             ideal_signal[j] += amps[i] * sin(2 * M_PI * freqs[i] * Ts * j);
         }
-        double noise = double(rand()) / RAND_MAX;
+        double noise = d(gen);
         qDebug() << "noise: " << noise;
         data_signal[j] = ideal_signal[j] + noise;
         qDebug() << data_signal[j];

@@ -40,7 +40,7 @@ private:
     double perBandpass = 0.5;
     std::vector<double> h;
     const size_t n = 128*2;
-    const double alp = 0.0001;
+    const double alp = 1e-6;
 
     std::vector<double> data_signal;
     std::vector<double> filtered_signal;
