@@ -170,7 +170,7 @@ void MainWindow::generateSignalSlot()
 
     std::random_device rd{};
     std::mt19937 gen{rd()};
-    std::normal_distribution<>d{0.1, 0.2};
+    std::normal_distribution<>d{1, 0.2};
     data_signal.reserve(n);
     ideal_signal.reserve(n);
 
@@ -208,7 +208,7 @@ void MainWindow::filterSignalSlot()
         }
         else
         {
-            filtered_signal[k] = data_signal[k];
+            filtered_signal[k] = 0;//data_signal[k];
         }
         signalSeries->append(k, filtered_signal[k]);
     }
@@ -251,7 +251,7 @@ void MainWindow::lmsFilterSlot()
         }
         else
         {
-            filtered_signal[k] = data_signal[k];
+            filtered_signal[k] = 0;//data_signal[k];
         }
         e = ideal_signal[k] - filtered_signal[k];
         qDebug() << "e[" << k <<"] = " << e;

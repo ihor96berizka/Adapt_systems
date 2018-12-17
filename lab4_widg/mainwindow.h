@@ -39,8 +39,8 @@ private:
     double attenuation = 45;
     double perBandpass = 0.5;
     std::vector<double> h;
-    const size_t n = 128*2;
-    const double alp = 1e-6;
+    const size_t n = 128*8;
+    const double alp = 1e-3;
 
     std::vector<double> data_signal;
     std::vector<double> filtered_signal;
